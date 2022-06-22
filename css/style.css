@@ -14,6 +14,9 @@
     /* card-set */
     --item: 3;
     --indent: 30px;
+
+    /* others */
+    --anim: 300ms ease-in;
 }
 body{
     font-family:var(--main-font);
@@ -118,7 +121,22 @@ address{
 .header-nav-item:last-child{
     margin-right: 0;
 }
+.header-nav .link.current::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+
+
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #2196f3;
+    border-radius: 2px;
+
+}
 .nav-list-item{
+    position: relative;
     display: block;
     padding-top: 32px;
     padding-bottom: 32px;
@@ -281,6 +299,26 @@ color: var(--accent-color);
     text-align: center;
     letter-spacing: 0.03em;
 }
+.features-iteam {
+    position: relative;
+}
+.card-set-text{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 27px;
+    padding-bottom: 27px;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.42;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #ffffff;
+
+    background-color: rgba(47, 48, 58, 0.8);
+}
 
 /* Наша команда */
 .team{
@@ -332,6 +370,7 @@ color: var(--accent-color);
 }
 .team-soc-list {
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -345,13 +384,21 @@ color: var(--accent-color);
     margin-left: 0;
 }
 
+.team-soc-iteam:not(:last-child){
+    margin-right: 10px;
+}
 .team-soc-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
     width: 100%;
     height: 100%;
+    color: #afb1b8;
+
+    border-radius: 50%;
+    background-color: transparent;
+    transition: color var(--anim),
+    background-color var(--anim);
 
 }
 
@@ -366,7 +413,7 @@ color: var(--accent-color);
 }
 
 .team-soc-icon {
-    fill: #afb1b8;
+    fill: currentColor ;
 }
 
 /* Клиенти */
@@ -397,7 +444,11 @@ h2.regular-clients-title.main-title{
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
     color: #afb1b8;
+
+    transition: color var(--anim), border-color var(--anim);
 }
 
 .regular-client-icon {
@@ -500,6 +551,8 @@ h2.regular-clients-title.main-title{
     border-radius: 50%;
 
     background-color: rgba(255, 255, 255, 0.1);
+    transition: color var(--anim),
+    background-color var(--anim);
 }
 
 .footer-soc-link:hover,.footer-soc-link:focus {
@@ -546,16 +599,45 @@ h2.regular-clients-title.main-title{
     --indent: 30px;
 
 }
-
+.portfolio-iteam{
+    transition: box-shadow var(--anim);
+}
 .portfolio-iteam:hover,.portfolio-iteam:focus {
     display: block;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-        1px 4px 6px rgba(0, 0, 0, 0.16);
+    1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 .portfolio-wrapper{
     padding: 20px 24px;
     border: 1px solid #EEEEEE;
     border-top: none;
+}
+.images-group{
+    position: relative;
+    overflow: hidden;
+}
+.img-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 63px 24px;
+    width: 100%;
+    height: 100%;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.56;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+
+    background-color: rgba(33, 150, 243, 0.9);
+
+    transform: translateY(100%);
+    transition: transform var(--anim);
+}
+.portfolio-iteam:hover .img-overlay,
+.portfolio-iteam:focus .img-overlay{
+    transform: translateY(0);
 }
 .name-prj{
     margin-bottom: 4px;
@@ -571,4 +653,61 @@ h2.regular-clients-title.main-title{
     line-height: 1.66;
     letter-spacing: 0.03em;
     color: var(--after-title-color);
+}
+/* modal window */
+.backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    
+    opacity: 1;
+
+    background-color: rgba(0, 0, 0, 0.2);
+
+    transition: opacity 600ms ease-in-out, visibility 600ms ease-in-out;
+}
+.backdrop.is-hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+
+    width: 528px;
+    height: 581px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    opacity: 0;
+    transition: transform 400ms ease-in-out 200ms, opacity 400ms ease-in-out 100ms;
+}
+.backdrop.is-hidden .modal{
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4) rotate(360deg);
+}
+.modal-btn{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }

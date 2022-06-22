@@ -59,7 +59,7 @@
         <section class="solution-section hero">
             <div class="container">
                 <h1 class="business-solution">Эффективные решения для вашего бизнеса</h1>
-                <button class="btn-clik" type="button" >Заказать услугу</button>
+                <button class="btn-clik" type="button" data-modal-open>Заказать услугу</button>
             </div>
         </section>
 
@@ -110,14 +110,17 @@
             <div class="container">
                 <h2 class="our-activity">Чем мы занимаемся</h2>
                 <ul class="features-list card-set list">
-                    <li class="card-set-item">
+                    <li class="features-iteam card-set-item">
                         <img src="./images/img.computer.png" alt="Переніс данних на компьютер" width="370" height="294">
+                        <div class="card-set-text">Десктопные приложения</div>
                     </li>
-                    <li class="card-set-item">
+                    <li class="features-iteam card-set-item">
                         <img src="./images/img.phone.png" alt="Розробка мобільного сайту" width="370" height="294">
+                        <div class="card-set-text">Мобильные приложения</div>
                     </li>
-                    <li class="card-set-item">
+                    <li class="features-iteam card-set-item">
                         <img src="./images/img.color.png" alt="Корекція кольору" width="370" height="294">
+                        <div class="card-set-text">Дизайнерские решения</div>
                     </li>
                 </ul>
             </div>
@@ -385,6 +388,16 @@
             </ul>
         </div>
     </footer>
-
+    <!-- modal window -->
+    <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+            <button class="modal-btn" type="button" data-modal-close>
+                <svg class="modal-icon" width="18" height="18 ">
+                    <use href="./images/icons.svg#icon-close-1"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script src="./js/modal.js"></script>
 </body>
 </html>
