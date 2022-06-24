@@ -16,7 +16,7 @@
     --indent: 30px;
 
     /* others */
-    --anim: 2500ms cubic-bezier(0.4, 0, 0.2, 1);
+    --anim: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 body{
     font-family:var(--main-font);
@@ -655,6 +655,11 @@ h2.regular-clients-title.main-title{
     color: var(--after-title-color);
 }
 /* modal window */
+.backdrop.is-hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 .backdrop{
     position: fixed;
     top: 0;
@@ -662,24 +667,16 @@ h2.regular-clients-title.main-title{
 
     width: 100vw;
     height: 100vh;
-    
-    opacity: 1;
 
     background-color: rgba(0, 0, 0, 0.2);
 
     transition: opacity 600ms ease-in-out, visibility 600ms ease-in-out;
-}
-.backdrop.is-hidden{
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
 }
 .modal{
     position: absolute;
     top: 50%;
     left: 50%;
     
-    opacity: 1;
     transform: translate(-50%, -50%) scale(1) rotate(0);
 
     width: 528px;
@@ -688,7 +685,6 @@ h2.regular-clients-title.main-title{
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 
-    opacity: 0;
     transition: transform 400ms ease-in-out 200ms, opacity 400ms ease-in-out 100ms;
 }
 .backdrop.is-hidden .modal{
@@ -710,4 +706,7 @@ h2.regular-clients-title.main-title{
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+.modal-icon {
+    fill: #000;
 }
